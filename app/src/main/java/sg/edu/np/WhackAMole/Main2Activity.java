@@ -63,11 +63,11 @@ public class Main2Activity extends AppCompatActivity {
                 //setNewMole();
                 placeMoleTimer();
 
-
-
             }
+
         };
         myCountDown.start();
+
 
 
         /*  HINT:
@@ -129,13 +129,20 @@ public class Main2Activity extends AppCompatActivity {
         setContentView(R.layout.activity_main2);
 
         //Log.v(TAG, "Current User Score: " + String.valueOf(advancedScore));
+
         score = findViewById(R.id.score);
+        Intent receiving_score = getIntent();
+        String point = receiving_score.getStringExtra("score");
+        score.setText(String.valueOf(point));
+
+        points = Integer.parseInt(String.valueOf(point));
+        //score.setText(points);
 
 
         for(final int id : BUTTON_IDS){
             Log.v(TAG,"abc");
-
             readyTimer();
+
             /*  HINT:
             This creates a for loop to populate all 9 buttons with listeners.
             You may use if you wish to remove or change to suit your codes.
@@ -153,12 +160,12 @@ public class Main2Activity extends AppCompatActivity {
             String mole = b.getText().toString();
             if (checkButton.getText().toString() == mole){
                 Log.v(TAG, "Hit, score added!");
-
             }
-            else{
+            else if (checkButton.getText().toString() != mole){
                 Log.v(TAG, "Missed, point deducted!");
             }
         }
+        Log.v(TAG,String.valueOf(points));
 
             /* Hint:
             Checks for hit or miss
@@ -192,19 +199,11 @@ public class Main2Activity extends AppCompatActivity {
         }
 
         doCheck(b);
-        setScore();
 
 
-    }
-
-    public void setScore()
-    {
-//        Intent receiving_score = getIntent();
-//        String point = receiving_score.getStringExtra("score");
-
-        String Scores = String.valueOf(points);
-        score.setText(Scores);
 
     }
+
+
 }
 
