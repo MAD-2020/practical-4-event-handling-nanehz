@@ -4,4 +4,125 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Main2Activity"/>
+    tools:context=".Main2Activity">
+
+
+<!--    Top layer-->
+    <Button
+        android:id="@+id/t_leftbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:text="O"
+        android:layout_marginBottom="250dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/t_middlebutton"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/t_middlebutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="O"
+        app:layout_constraintBottom_toBottomOf="@+id/t_leftbutton"
+        app:layout_constraintEnd_toStartOf="@+id/t_rightbutton"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/t_leftbutton"
+        app:layout_constraintTop_toTopOf="@+id/t_leftbutton" />
+
+    <Button
+        android:id="@+id/t_rightbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="O"
+        app:layout_constraintBottom_toBottomOf="@+id/t_middlebutton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/t_middlebutton"
+        app:layout_constraintTop_toTopOf="@+id/t_middlebutton" />
+
+<!--    Middle layer buttons-->
+    <Button
+        android:id="@+id/m_leftbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:text="O"
+        android:layout_marginBottom="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/m_middlebutton"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/m_middlebutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="O"
+        app:layout_constraintBottom_toBottomOf="@+id/m_leftbutton"
+        app:layout_constraintEnd_toStartOf="@+id/m_rightbutton"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/m_leftbutton"
+        app:layout_constraintTop_toTopOf="@+id/m_leftbutton" />
+
+    <Button
+        android:id="@+id/m_rightbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="O"
+        app:layout_constraintBottom_toBottomOf="@+id/m_middlebutton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/m_middlebutton"
+        app:layout_constraintTop_toTopOf="@+id/m_middlebutton" />
+
+<!--    Bottom layer-->
+    <Button
+        android:id="@+id/b_leftbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:text="O"
+        android:layout_marginTop="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/b_middlebutton"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/b_middlebutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="O"
+        app:layout_constraintBottom_toBottomOf="@+id/b_leftbutton"
+        app:layout_constraintEnd_toStartOf="@+id/b_rightbutton"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/b_leftbutton"
+        app:layout_constraintTop_toTopOf="@+id/b_leftbutton" />
+
+    <Button
+        android:id="@+id/b_rightbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="O"
+        app:layout_constraintBottom_toBottomOf="@+id/b_middlebutton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/b_middlebutton"
+        app:layout_constraintTop_toTopOf="@+id/b_middlebutton" />
+
+    <TextView
+        android:id="@id/score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="250dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+         />
+
+</android.support.constraint.ConstraintLayout>

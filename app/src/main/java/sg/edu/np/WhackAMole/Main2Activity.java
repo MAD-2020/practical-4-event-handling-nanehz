@@ -1,6 +1,7 @@
 package sg.edu.np.WhackAMole;
 
 import android.content.Intent;
+import android.nfc.Tag;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,8 +12,34 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Main2Activity extends AppCompatActivity {
+
+    //top layer buttons
+    private Button t_leftbutton;
+    private Button t_middlebutton;
+    private Button t_rightbutton;
+
+    //middle layer buttons
+    private Button m_leftbutton;
+    private Button m_middlebutton;
+    private Button m_rightbutton;
+
+    //bottom layer buttons
+    private Button b_leftbutton;
+    private Button b_middlebutton;
+    private Button b_rightbutton;
+
+    //countdown timer
+    CountDownTimer myCountDown;
+
+    //score
+    private int points;
+    private TextView score;
+
+    private static final String TAG = "Whack-A-Mole";
     /* Hint
         - The function setNewMole() uses the Random class to generate a random value ranged from 0 to 8.
         - The function doCheck() takes in button selected and computes a hit or miss and adjust the score accordingly.
@@ -23,6 +50,26 @@ public class Main2Activity extends AppCompatActivity {
 
 
     private void readyTimer(){
+        myCountDown = new CountDownTimer(10000, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                Log.v(TAG, "Ready CountDown! " + millisUntilFinished/ 1000);
+
+            }
+
+            @Override
+            public void onFinish() {
+                Log.v(TAG,"GO!");
+                //setNewMole();
+                placeMoleTimer();
+
+
+
+            }
+        };
+        myCountDown.start();
+
+
         /*  HINT:
             The "Get Ready" Timer.
             Log.v(TAG, "Ready CountDown!" + millisUntilFinished/ 1000);
@@ -34,6 +81,22 @@ public class Main2Activity extends AppCompatActivity {
          */
     }
     private void placeMoleTimer(){
+        myCountDown = new CountDownTimer(1000,1000) {
+            @Override
+            public void onTick(long l) {
+                Log.v(TAG, "Ready CountDown! " + l/ 1000);
+            }
+
+            @Override
+            public void onFinish() {
+
+                setNewMole();
+                myCountDown.start();
+
+            }
+        };
+        myCountDown.start();
+
         /* HINT:
            Creates new mole location each second.
            Log.v(TAG, "New Mole Location!");
@@ -43,6 +106,12 @@ public class Main2Activity extends AppCompatActivity {
          */
     }
     private static final int[] BUTTON_IDS = {
+            //top
+            R.id.t_leftbutton,R.id.t_middlebutton,R.id.t_rightbutton,
+            //middle
+            R.id.m_leftbutton,R.id.m_middlebutton,R.id.m_rightbutton,
+            //bottom
+            R.id.b_leftbutton,R.id.b_middlebutton,R.id.b_rightbutton
         /* HINT:
             Stores the 9 buttons IDs here for those who wishes to use array to create all 9 buttons.
             You may use if you wish to change or remove to suit your codes.*/
@@ -59,10 +128,14 @@ public class Main2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        Log.v(TAG, "Current User Score: " + String.valueOf(advancedScore));
+        //Log.v(TAG, "Current User Score: " + String.valueOf(advancedScore));
+        score = findViewById(R.id.score);
 
 
         for(final int id : BUTTON_IDS){
+            Log.v(TAG,"abc");
+
+            readyTimer();
             /*  HINT:
             This creates a for loop to populate all 9 buttons with listeners.
             You may use if you wish to remove or change to suit your codes.
@@ -75,13 +148,25 @@ public class Main2Activity extends AppCompatActivity {
     }
     private void doCheck(Button checkButton)
     {
-        /* Hint:
+        for (final int id: BUTTON_IDS){
+            Button b = (Button) findViewById(id);
+            String mole = b.getText().toString();
+            if (checkButton.getText().toString() == mole){
+                Log.v(TAG, "Hit, score added!");
+
+            }
+            else{
+                Log.v(TAG, "Missed, point deducted!");
+            }
+        }
+
+            /* Hint:
             Checks for hit or miss
-            Log.v(TAG, "Hit, score added!");
-            Log.v(TAG, "Missed, point deducted!");
             belongs here.
         */
     }
+
+
 
     public void setNewMole()
     {
@@ -91,6 +176,35 @@ public class Main2Activity extends AppCompatActivity {
          */
         Random ran = new Random();
         int randomLocation = ran.nextInt(9);
+
+        int mole = BUTTON_IDS[randomLocation];
+
+        Button b = (Button)findViewById(mole);
+        for (final int id : BUTTON_IDS){
+            if ( id == mole){
+                Button m = (Button)findViewById(id);
+                m.setText("*");
+            }
+            else{
+                Button o = (Button)findViewById(id);
+                o.setText("O");
+            }
+        }
+
+        doCheck(b);
+        setScore();
+
+
+    }
+
+    public void setScore()
+    {
+//        Intent receiving_score = getIntent();
+//        String point = receiving_score.getStringExtra("score");
+
+        String Scores = String.valueOf(points);
+        score.setText(Scores);
+
     }
 }
 
