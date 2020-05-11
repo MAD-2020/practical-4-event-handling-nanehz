@@ -155,18 +155,16 @@ public class Main2Activity extends AppCompatActivity {
     }
     private void doCheck(Button checkButton)
     {
-        for (final int id: BUTTON_IDS){
-            Button b = (Button) findViewById(id);
-            String mole = b.getText().toString();
-            if (checkButton.getText().toString() == mole){
-                Log.v(TAG, "Hit, score added!");
-            }
-            else if (checkButton.getText().toString() != mole){
-                Log.v(TAG, "Missed, point deducted!");
-            }
+//
+        if (checkButton.getText().toString() == "*")
+        {
+            Log.v(TAG, "Hit, score added!");
+            points +=1;
         }
-        Log.v(TAG,String.valueOf(points));
-
+        else if (checkButton.getText().toString() != "*"){
+            Log.v(TAG, "Missed, point deducted!");
+            points -=1;
+        }
             /* Hint:
             Checks for hit or miss
             belongs here.
@@ -197,13 +195,12 @@ public class Main2Activity extends AppCompatActivity {
                 o.setText("O");
             }
         }
-
-        doCheck(b);
-
-
-
     }
 
-
+    public void onClickButton(View view) {
+        Button b = (Button) view;
+        doCheck(b);
+        score.setText(String.valueOf(points));
+    }
 }
 

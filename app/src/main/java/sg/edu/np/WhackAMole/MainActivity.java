@@ -133,21 +133,7 @@ public class MainActivity extends AppCompatActivity {
         Log.v(TAG, "User decline!");
         Log.v(TAG, "Advance option given to user!");
         belongs here*/
-//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
 //
-//        builder.setTitle("Warning! Insane Whack-A-Mole incoming!");
-//        builder.setMessage("Would you like to proceed to the advance mode?");
-//        builder.setCancelable(true);
-//        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener(){
-//            public void onClick(DialogInterface dialog, int id){
-//                Log.v(TAG,"User accepts!");
-//
-//            }
-//        });
-//        builder.setNegativeButton("No",null);
-//
-//        AlertDialog alert = builder.create();
-//        alert.show();
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
         builder.setTitle("Warning! Insane Whack-A-Mole incoming!");
@@ -167,9 +153,6 @@ public class MainActivity extends AppCompatActivity {
 
         AlertDialog alert = builder.create();
         alert.show();
-
-
-
     }
 
     private void nextLevel(){
