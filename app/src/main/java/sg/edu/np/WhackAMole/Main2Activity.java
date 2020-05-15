@@ -39,30 +39,36 @@ public class Main2Activity extends AppCompatActivity {
     private int points;
     private TextView score;
 
+    private Toast mToastToShow;
+
     private static final String TAG = "Whack-A-Mole";
+
     /* Hint
         - The function setNewMole() uses the Random class to generate a random value ranged from 0 to 8.
         - The function doCheck() takes in button selected and computes a hit or miss and adjust the score accordingly.
         - The functions readTimer() and placeMoleTimer() are to inform the user X seconds before starting and loading new mole.
         - Feel free to modify the function to suit your program.
+
     */
 
-
-
     private void readyTimer(){
+        final Toast[] mToast = {(null)};
+
         myCountDown = new CountDownTimer(10000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 Log.v(TAG, "Ready CountDown! " + millisUntilFinished/ 1000);
-
+                if (mToast[0] != null) mToast[0].cancel();
+                mToast[0] = Toast.makeText(getApplicationContext(), "Get Ready in " + millisUntilFinished / 1000 + " seconds", Toast.LENGTH_SHORT);
+                mToast[0].show();
             }
-
             @Override
             public void onFinish() {
                 Log.v(TAG,"GO!");
-                //setNewMole();
+                if (mToast[0]!= null) mToast[0].cancel();
+                mToast[0] = Toast.makeText(getApplicationContext(), "GO!", Toast.LENGTH_SHORT);
+                mToast[0].show();
                 placeMoleTimer();
-
             }
 
         };
